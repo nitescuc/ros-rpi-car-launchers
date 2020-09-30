@@ -1,0 +1,38 @@
+<launch>
+  <node name="remote_reader" type="remote_reader" pkg="car_sensors" output="screen" respawn="true">
+    <param name="steering/gpio" type="int" value="17" />
+    <param name="steering/sensitivity" type="double" value="0.015" />
+    <param name="throttle/gpio" type="int" value="27" />
+    <param name="throttle/sensitivity" type="double" value="0.015" />
+    <param name="channel3/gpio" type="int" value="22" />
+    <param name="channel3/range_min" type="int" value="1100" />
+  </node>
+  <node name="brushless_odom" type="brushless_odom" pkg="car_sensors" output="screen" respawn="true">
+    <param name="odom/gpio" type="int" value="19" />
+    <param name="odom/power" type="int" value="26" />
+    <param name="loop_rate" value="10" />
+  </node>
+  <node name="status_led" type="status_led" pkg="car_display" output="screen" respawn="true">
+  </node>
+
+  <node name="car_controller" type="car_controller" pkg="car_controller" output="screen" respawn="true">
+    <remap from="actuator/throttle" to="actuator/auto_throttle" />
+  </node>
+  <node name="drive_actuators" type="drive_actuators" pkg="car_actuators" output="screen" respawn="true">
+    <param name="steering/gpio" value="24" />
+    <param name="steering/offset" value="-0.1" />
+    <param name="throttle/gpio" value="23" />
+    <param name="throttle/offset" value="0.05" />
+  </node>
+
+  <node name="pilot_throttle_pid" pkg="pid" type="controller" output="screen">
+    <param name="Kp" value="0.5" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.0" />
+    <param name="upper_limit" value="1.0" />
+    <param name="lower_limit" value="-1.0" />
+    <param name="topic_from_plant" value="odom" />
+    <param name="setpoint_topic" value="actuator/auto_throttle" />
+    <param name="topic_from_controller" value="actuator/throttle" />
+  </node>
+</launch>
