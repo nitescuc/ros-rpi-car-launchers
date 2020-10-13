@@ -1,3 +1,4 @@
+
 <launch>
   <node name="remote_reader" type="remote_reader" pkg="car_sensors" output="screen" respawn="true">
     <param name="steering/gpio" type="int" value="17" />
@@ -15,6 +16,7 @@
     <param name="odom/gpio" type="int" value="19" />
     <param name="odom/power" type="int" value="26" />
     <param name="odom/loop_rate" value="10" />
+    <param name="odom/range_max" type="int" value="500" />
   </node>
   <node name="status_led" type="status_led" pkg="car_display" output="screen" respawn="true">
   </node>
@@ -25,11 +27,11 @@
   <node name="drive_actuators" type="drive_actuators" pkg="car_actuators" output="screen" respawn="true">
     <remap to="controller/steering" from="actuator/steering" />
     <param name="steering/gpio" value="24" />
-    <param name="steering/offset" value="-0.1" />
+    <param name="steering/offset" value="-0.2" />
     <param name="throttle/gpio" value="23" />
     <param name="throttle/offset" value="0.05" />
     <param name="throttle/min_value" value="1000" />
-    <param name="throttle/max_value" value="1700" />
+    <param name="throttle/max_value" value="1600" />
   </node>
 
   <node name="pilot_throttle_pid" pkg="pid" type="controller" output="screen" respawn="true">
