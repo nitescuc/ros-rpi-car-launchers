@@ -1,11 +1,11 @@
 
 <launch>
   <node name="remote_reader" type="remote_reader" pkg="car_sensors" output="screen" respawn="true">
-    <param name="steering/gpio" type="int" value="17" />
+    <param name="steering/gpio" type="int" value="18" />
     <param name="steering/sensitivity" type="double" value="0.015" />
-    <param name="throttle/gpio" type="int" value="27" />
+    <param name="throttle/gpio" type="int" value="15" />
     <param name="throttle/sensitivity" type="double" value="0.015" />
-    <param name="channel3/gpio" type="int" value="22" />
+    <param name="channel3/gpio" type="int" value="14" />
     <param name="channel3/range_min" type="int" value="1100" />
   </node>
   <node name="remote_udp_emitter" type="remote_udp_emitter" pkg="car_adapters" output="screen" respawn="true">
