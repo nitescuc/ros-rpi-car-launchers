@@ -15,7 +15,7 @@
   <node name="brushless_odom" type="brushless_odom" pkg="car_sensors" output="screen" respawn="true">
     <param name="odom/gpio" type="int" value="19" />
     <param name="odom/power" type="int" value="26" />
-    <param name="odom/loop_rate" value="10" />
+    <param name="odom/loop_rate" value="5" />
     <param name="odom/range_max" type="int" value="700" />
   </node>
   <node name="status_led" type="status_led" pkg="car_display" output="screen" respawn="true">
@@ -36,10 +36,11 @@
 
   <node name="pilot_throttle_pid" pkg="pid" type="controller" output="screen" respawn="true">
     <param name="Kp" value="3" />
-    <param name="Ki" value="0.02" />
-    <param name="Kd" value="0.0" />
+    <param name="Ki" value="0.0" />
+    <param name="Kd" value="0.004" />
     <param name="upper_limit" value="1.0" />
     <param name="lower_limit" value="-1.0" />
+    <param name="windup_limit" value="1.0" />
     <param name="topic_from_plant" value="odom" />
     <param name="setpoint_topic" value="controller/throttle" />
     <param name="topic_from_controller" value="actuator/throttle" />
