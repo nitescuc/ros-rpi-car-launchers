@@ -20,6 +20,9 @@
   </node>
   <node name="status_led" type="status_led" pkg="car_display" output="screen" respawn="true">
   </node>
+  <node name="power_ina219" type="ina219_node" pkg="power_ina219" output="screen" respawn="true">
+    <param name="publish_current" value="false" />
+  </node>
 
   <node name="car_controller" type="car_controller" pkg="car_controller" output="screen" respawn="true">
     <param name="block_reverse" value="true" />
